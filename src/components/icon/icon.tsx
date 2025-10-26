@@ -20,7 +20,6 @@ import {
   Skull,
   Star,
   X,
-  Zap,
 } from 'lucide-react';
 import { ComponentProps } from 'react';
 
