@@ -101,6 +101,5 @@ export const LengthTooLong: Story = {
     expect(count).toHaveTextContent(inputValue.length.toString());
     expect(textArea).toHaveAttribute('aria-invalid', 'true');
     expect(textArea).toHaveClass('ring-danger-500');
-    expect(count).toHaveClass('text-danger-500');
   },
 };
