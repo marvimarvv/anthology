@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TextArea } from './text-area';
+import { expect, userEvent, within } from '@storybook/test';
 
-import { userEvent, within, expect } from '@storybook/test';
+import { TextArea } from './text-area';
 
 const meta = {
   title: 'Components/TextArea',
@@ -48,3 +48,59 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof TextArea>;
+
+export const Default: Story = {};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const textArea = canvas.getByRole('textbox');
+
+    expect(textArea).toBeDisabled();
+    await userEvent.type(textArea, 'Hello, world!');
+    expect(textArea).toHaveValue('');
+  },
+};
+
+export const Required: Story = {
+  args: {
+    required: true,
+  },
+};
+
+export const WithCount: Story = {
+  args: {
+    maxLength: 140,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const textArea = canvas.getByRole('textbox');
+    const inputValue = 'Hello, world!';
+    const count = canvas.getByTestId('length');
+
+    await userEvent.type(textArea, 'Hello, world!');
+
+    expect(count).toHaveTextContent(inputValue.length.toString());
+  },
+};
+
+export const LengthTooLong: Story = {
+  args: {
+    maxLength: 140,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const textArea = canvas.getByRole('textbox');
+    const count = canvas.getByTestId('length');
+    const inputValue = 'Y' + 'a' + 's'.repeat(140);
+
+    await userEvent.type(textArea, inputValue);
+    expect(count).toHaveTextContent(inputValue.length.toString());
+    expect(textArea).toHaveAttribute('aria-invalid', 'true');
+    expect(textArea).toHaveClass('ring-danger-500');
+    expect(count).toHaveClass('text-danger-500');
+  },
+};

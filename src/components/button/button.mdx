@@ -1,0 +1,18 @@
+{/* In this case primary is the first story exported */}
+import { Meta, Title, Primary, Stories, Controls } from '@storybook/blocks';
+import ButtonStories from './button.stories';
+import { Button } from './button';
+
+<Title>Button</Title>
+
+<Meta of={ButtonStories} />
+
+(Here is some notes on how to use a button.)
+
+<Primary />
+
+<Controls />
+
+## Other variations
+
+<Stories of={ButtonStories} />

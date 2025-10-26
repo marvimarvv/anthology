@@ -35,7 +35,7 @@ export type IconProps = ComponentProps<LucideIcon> & {
     | 'hash'
     | 'heart'
     | 'help'
-    | 'info'
+    | 'information'
     | 'link'
     | 'list'
     | 'pencil'
@@ -46,7 +46,8 @@ export type IconProps = ComponentProps<LucideIcon> & {
     | 'success'
     | 'warning'
     | 'x'
-    | 'zap';
+    | 'zap'
+    | 'primary';
 };
 
 const iconComponents: Record<IconProps['type'], LucideIcon> = {
@@ -59,7 +60,7 @@ const iconComponents: Record<IconProps['type'], LucideIcon> = {
   hash: Hash,
   heart: Heart,
   help: HelpCircle,
-  info: Info,
+  information: Info,
   link: Link,
   list: List,
   pencil: Pencil,
@@ -71,6 +72,7 @@ const iconComponents: Record<IconProps['type'], LucideIcon> = {
   warning: AlertTriangle,
   x: X,
   zap: Zap,
+  primary: Pencil,
 };
 
 export const Icon = ({ type, ...props }: IconProps) => {
