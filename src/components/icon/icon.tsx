@@ -35,6 +35,7 @@ export type IconProps = ComponentProps<LucideIcon> & {
     | 'hash'
     | 'heart'
     | 'help'
+    | 'information'
     | 'link'
     | 'list'
     | 'pencil'
